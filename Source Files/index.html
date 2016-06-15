@@ -1,0 +1,37 @@
+<!Doctype html>
+<html>
+
+<head>
+    <title>Welcome to Angular JS</title>
+    <script src="app/components/angular.min.js"></script>
+    <script src="app/app.js"></script>
+</head>
+
+<body data-ng-app="ungdungdautien" ng-init="soluong=2;gia=40; sinhvien={ho:'Tran Minh',ten:'Chinh',mssv:20150678};diemthi=[8.5,9,7.5,9,6.0]">
+    <p>Xin chao {{sinhvien.ho + " " + sinhvien.ten}}!</p>
+    <p>MSSV: {{sinhvien.mssv}}</p>
+    <p>Chi phi muon sach: {{gia * soluong}}.000 VND</p>
+    <p>Diem thi (Mon Toan): {{diemthi[3]}}</p>
+    <div ng-controller="ViduController">
+        <h2>Chao mung ban den voi {{xinchao.tieude}} tai VietJack.com!</h2>
+        <p>Nhap ten cua ban: <input type="text" ng-model="ten"></p>
+        <p>Xin chao <span ng-bind="ten"></span>!</p>
+
+
+        <p>Danh sach cac Quoc gia voi Locale tuong ung:</p>
+        <ol>
+            <li ng-repeat="quocgia in cacquocgia">
+                {{ 'Quoc Gia: ' + quocgia.ten + ', Locale: ' + quocgia.locale }}
+            </li>
+        </ol>
+    </div>
+
+    <div ng-controller="sinhvienController">
+        Nhap ho: <input type="text" ng-model="sinhvien.ho"><br>
+        <br> Nhap ten: <input type="text" ng-model="sinhvien.ten"><br>
+        <br> Ban dang nhap: {{sinhvien.hoten()|lowercase}}
+    </div>
+
+</body>
+
+</html>
