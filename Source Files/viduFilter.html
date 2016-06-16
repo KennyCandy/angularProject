@@ -5,8 +5,24 @@
     <title>Vi du Filter trong AngularJS</title>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script src="app/app.js">
-        
     </script>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 
 <body>
@@ -22,42 +38,47 @@
                 <td><input type="text" ng-model="sinhvien.ten"></td>
             </tr>
             <tr>
-                <td>Nhap hoc phi: </td>
-                <td><input type="text" ng-model="sinhvien.hocphi"></td>
+                <td>Ho va Ten: </td>
+                <td>{{sinhvien.hoten()}}</td>
             </tr>
             <tr>
-                <td>Nhap mon hoc: </td>
-                <td><input type="text" ng-model="tenMonHoc"></td>
+                <td>Mon Hoc:</td>
+                <td>
+                    <table>
+                        <tr>
+                            <th>Ho va Ten</th>
+                            <th>Diem thi</th>
+                        </tr>
+                        <tr ng-repeat="monhoc in sinhvien.tenMonHoc">
+                            <td>{{ monhoc.ten }}</td>
+                            <td>{{ monhoc.diemthi }}</td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
         </table>
-        <br/>
         <table border="0">
             <tr>
-                <td>Ten dang chu hoa: </td>
-                <td>{{sinhvien.hoten() | uppercase}}</td>
+                <td><input type="checkbox" ng-model="vohieuhoakichhoatnut">Vo hieu hoa nut</td>
+                <td><button ng-disabled="vohieuhoakichhoatnut">Nhan vao day!</button></td>
             </tr>
             <tr>
-                <td>Ten dang chu thuong: </td>
-                <td>{{sinhvien.hoten() | lowercase}}</td>
+                <td><input type="checkbox" ng-model="hienthinut">Hien thi nut</td>
+                <td><button ng-show="hienthinut">Nhan vao day!</button></td>
             </tr>
             <tr>
-                <td>Hoc phi: </td>
-                <td>{{sinhvien.hocphi | currency}}</td>
+                <td><input type="checkbox" ng-model="annut">An nut</td>
+                <td><button ng-hide="annut">Nhan vao day!</button></td>
             </tr>
             <tr>
-                <td>Mon hoc:</td>
                 <td>
-                    <ul>
-                        <li ng-repeat="monhoc in sinhvien.tenMonHoc | filter: tenMonHoc |orderBy:'diemthi'">
-                            {{ monhoc.ten + ', diemthi:' + monhoc.diemthi }}
-                        </li>
-                    </ul>
+                    <p>Tong luong click: {{ demluongclick }}</p>
                 </td>
+                <td><button ng-click="demluongclick = demluongclick + 1">Nhan vao day!</button></td>
             </tr>
         </table>
     </div>
     <script>
-
     </script>
 </body>
 

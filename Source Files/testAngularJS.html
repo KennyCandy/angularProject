@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Vi du Service trong AngularJS</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+</head>
+
+<body>
+    <h2>Ung dung AngularJS</h2>
+    <div ng-app="ungdungAngularJS" ng-controller="tinhBPController">
+        <p>Nhap mot so: <input type="number" ng-model="number" />
+            <button ng-click="binhphuong()">X<sup>2</sup></button>
+            <button ng-click="lapphuong()">X<sup>3</sup></button></p>
+        <p>Ket qua binh phuong: {{ketquabp}}</p>
+        <p>Ket qua lap phuong: {{ketqualp}}</p>
+    </div>
+    <script>
+        var ungdungAngularJS = angular.module("ungdungAngularJS", []);
+        // ungdungAngularJS.factory('toanhocService', function() {
+        //     var factory = {};
+        //     factory.phepnhan = function(a, b) {
+        //         return a * b
+        //     }
+        //     return factory;
+        // });
+
+
+        ungdungAngularJS.service('toanhocService', function() {
+            this.phepnhan = function(a, b) {
+                return a * b;
+            }
+        });
+
+        ungdungAngularJS.service('tinhBPService', function(toanhocService) {
+            this.binhphuong = function(a) {
+                return toanhocService.phepnhan(a, a);
+            };
+            this.lapphuong = function(b) {
+                return toanhocService.phepnhan(toanhocService.phepnhan(b, b), b);
+            };
+
+        });
+
+        ungdungAngularJS.controller('tinhBPController', function($scope, tinhBPService) {
+            $scope.binhphuong = function() {
+                $scope.ketquabp = tinhBPService.binhphuong($scope.number);
+            }
+            $scope.lapphuong = function() {
+                $scope.ketqualp = tinhBPService.lapphuong($scope.number);
+            }
+
+        });
+    </script>
+</body>
+
+</html>

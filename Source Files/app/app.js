@@ -19,8 +19,8 @@ var ungdungAngularjs = angular.module("ungdungAngularjs", []);
 
 ungdungAngularjs.controller('sinhvienController', function($scope) {
     $scope.sinhvien = {
-        ho: "Tran Minh",
-        ten: "Chinh",
+        ho: "Nguyen Quoc",
+        ten: "Trinh",
         hocphi: 200,
         tenMonHoc: [{
             ten: 'Vat Ly Dai Cuong',

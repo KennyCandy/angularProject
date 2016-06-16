@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Vi du AJAX trong AngularJS</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <script src="app/ungdungAngular.js"></script>
+    <script src="app/controllers/sinhvienController.js"></script>
+</head>
+
+<body>
+    <h2>Ung dung AngularJS</h2>
+    <div ng-app="ungdungAngularjs" ng-controller="sinhvienController">
+        <table>
+            <tr>
+                <th>Ho va Ten</th>
+                <th>MSSV</th>
+                <th>Diem thi</th>
+            </tr>
+            <tr ng-repeat="sinhvien in sinhvienk60">
+                <td>{{ sinhvien.HovaTen }}</td>
+                <td>{{ sinhvien.MSSV }}</td>
+                <td>{{ sinhvien.Diemthi }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-view></div>
+   <script type="text/ng-template" id="themSV.html">
+      <h2> Add Student </h2>
+         {{message}}
+   </script>
+
+</body>
+
+</html>
